@@ -1,0 +1,43 @@
+
+<p-messages [(value)]="msgs"></p-messages>
+<div class="row">
+    <h3>Tax Back User Curd Operation {{showWarning}}</h3> 
+
+</div> <br>
+
+<p-dataTable [value]="userList" selectionMode="single" [(selection)]="selectedCar" (onRowSelect)="onRowSelect($event)" [paginator]="true" rows="15" [responsive]="true">
+    <p-header>CRUD for Cars</p-header>
+    <p-column field="id" header="Vin" [sortable]="true"></p-column>
+    <p-column field="user" header="Email" [sortable]="true"></p-column>
+    <p-column field="amount" header="Ammount" [sortable]="true"></p-column>
+    <p-column field="currency" header="Currency Code" [sortable]="true"></p-column>
+    <p-column field="txn_date" header="Date" [sortable]="true"></p-column>
+   
+</p-dataTable>
+
+<p-dialog header="Car Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true">
+    <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="userData">
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-4"><label for="vin">ID</label></div>
+            <div class="ui-grid-col-8"><input pInputText id="id" [(ngModel)]="userData.id" readonly /></div>
+        </div>
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-4"><label for="Email">Email</label></div>
+            <div class="ui-grid-col-8"><input pInputText id="Email" [(ngModel)]="userData.user" /></div>
+        </div>
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-4"><label for="Ammount">Ammount</label></div>
+            <div class="ui-grid-col-8"><input pInputText id="Ammount" [(ngModel)]="userData.amount" /></div>
+        </div>
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-4"><label for="Date">Date</label></div>
+            <div class="ui-grid-col-8"><input pInputText id="Date" [(ngModel)]="userData.txn_date" /></div>
+        </div>
+    </div>
+    <p-footer>
+        <div class="ui-dialog-buttonpane ui-helper-clearfix">
+            <button type="button" pButton icon="fa-close" (click)="delete()" label="Delete"></button>
+            <button type="button" pButton icon="fa-check" (click)="save()" label="Save"></button>
+        </div>
+    </p-footer>
+</p-dialog>
